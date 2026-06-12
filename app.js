@@ -42,6 +42,9 @@ function animateCount(el) {
 
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.querySelectorAll('.truck animateTransform').forEach(el => el.remove());
+  const v = document.getElementById('heroVideo');
+  v.removeAttribute('autoplay');
+  v.pause();
 }
 
 document.getElementById('year').textContent = new Date().getFullYear();

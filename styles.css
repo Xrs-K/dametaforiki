@@ -60,9 +60,10 @@ h1, h2, h3 { font-family: var(--display); line-height: 1.15; }
 .hero { position: relative; min-height: 92vh; display: flex; align-items: center; overflow: hidden; }
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('assets/fleet2.jpg') center 30%/cover no-repeat;
+  background: url('assets/hero.jpg') center 30%/cover no-repeat;
   transform: scale(1.05);
 }
+.hero-bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .hero-bg::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(100deg, rgba(15,20,44,.92) 30%, rgba(15,20,44,.55) 65%, rgba(15,20,44,.35));
@@ -81,17 +82,17 @@ h1, h2, h3 { font-family: var(--display); line-height: 1.15; }
 .btn-ghost { border: 2px solid rgba(255,255,255,.5); color: #fff; }
 .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.1); }
 
-/* Animated truck on road */
-.hero-road { position: absolute; bottom: 0; left: 0; right: 0; height: 90px; z-index: 3; pointer-events: none; }
+/* Animated truck strip (divider) */
+.truck-strip { position: relative; height: 110px; background: var(--navy); overflow: hidden; pointer-events: none; }
 .road-line {
-  position: absolute; bottom: 18px; left: 0; right: 0; height: 3px;
+  position: absolute; bottom: 20px; left: 0; right: 0; height: 3px;
   background: repeating-linear-gradient(90deg, rgba(255,255,255,.55) 0 34px, transparent 34px 60px);
   animation: roadMove 0.8s linear infinite;
 }
 @keyframes roadMove { from { background-position-x: 0; } to { background-position-x: -60px; } }
 .truck {
-  position: absolute; bottom: 8px; width: 130px; overflow: visible;
-  animation: truckAcross 14s linear infinite;
+  position: absolute; bottom: 10px; width: 130px; overflow: visible;
+  animation: truckAcross 11s linear infinite;
 }
 @keyframes truckAcross {
   from { left: -160px; } to { left: calc(100vw + 40px); }
@@ -158,10 +159,9 @@ h2 { font-size: clamp(1.7rem, 3.6vw, 2.6rem); font-weight: 900; }
 .about-photo img { border-radius: 18px; box-shadow: 0 20px 50px rgba(22,29,58,.18); }
 
 /* Fleet */
-.fleet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.fleet-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
 .fleet-grid figure { overflow: hidden; border-radius: 14px; }
-.fleet-grid img { width: 100%; height: 240px; object-fit: cover; transition: transform .5s; }
-.fleet-grid figure:nth-child(3) img { object-position: 18% center; }
+.fleet-grid img { width: 100%; height: 320px; object-fit: cover; transition: transform .5s; }
 .fleet-grid figure:hover img { transform: scale(1.06); }
 
 /* Contact */
@@ -191,6 +191,7 @@ h2 { font-size: clamp(1.7rem, 3.6vw, 2.6rem); font-weight: 900; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   .truck, .road-line, .truck .speed line { animation: none !important; }
+  .truck-strip { display: none; }
   html { scroll-behavior: auto; }
 }
 
